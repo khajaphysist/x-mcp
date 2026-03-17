@@ -99,6 +99,7 @@ for (const tool of tools) {
 
       const result = await tool.handler(client, userId, args);
       console.log(JSON.stringify(result, null, 2));
+      process.exit(0);
     } catch (err) {
       console.error("Error:", err instanceof Error ? err.message : err);
       process.exit(1);
