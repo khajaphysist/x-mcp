@@ -30,7 +30,7 @@ You need X/Twitter API credentials (OAuth 1.0a). Get them from the [X Developer 
 Either log in interactively (credentials are saved to `~/.x-mcp/credentials.json`):
 
 ```bash
-npx x-mcp login
+npx @kms_dev/x-mcp login
 ```
 
 Or set environment variables:
@@ -55,7 +55,7 @@ Add to your MCP client config (e.g. Claude Desktop `~/Library/Application Suppor
   "mcpServers": {
     "x-mcp": {
       "command": "npx",
-      "args": ["-y", "x-mcp"],
+      "args": ["-y", "@kms_dev/x-mcp"],
       "env": {
         "X_API_KEY": "your_api_key",
         "X_API_SECRET": "your_api_secret",
@@ -67,14 +67,14 @@ Add to your MCP client config (e.g. Claude Desktop `~/Library/Application Suppor
 }
 ```
 
-If you've already run `npx x-mcp login`, you can omit the `env` block:
+If you've already run `npx @kms_dev/x-mcp login`, you can omit the `env` block:
 
 ```json
 {
   "mcpServers": {
     "x-mcp": {
       "command": "npx",
-      "args": ["-y", "x-mcp"]
+      "args": ["-y", "@kms_dev/x-mcp"]
     }
   }
 }
@@ -83,14 +83,14 @@ If you've already run `npx x-mcp login`, you can omit the `env` block:
 ### CLI
 
 ```bash
-npx x-mcp login
-npx x-mcp post-tweet "Hello world!"
-npx x-mcp search-tweets "typescript" --max-results 5
-npx x-mcp get-user-info XDevelopers
-npx x-mcp get-timeline --max-results 10
-npx x-mcp like-tweet 1234567890
-npx x-mcp retweet 1234567890
-npx x-mcp delete-tweet 1234567890
+npx @kms_dev/x-mcp login
+npx @kms_dev/x-mcp post-tweet "Hello world!"
+npx @kms_dev/x-mcp search-tweets "typescript" --max-results 5
+npx @kms_dev/x-mcp get-user-info XDevelopers
+npx @kms_dev/x-mcp get-timeline --max-results 10
+npx @kms_dev/x-mcp like-tweet 1234567890
+npx @kms_dev/x-mcp retweet 1234567890
+npx @kms_dev/x-mcp delete-tweet 1234567890
 ```
 
 ## Development

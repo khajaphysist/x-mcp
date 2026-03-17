@@ -54,7 +54,7 @@ export function createClient(): Client {
   }
 
   throw new Error(
-    "No credentials found. Run `x-mcp login` or set X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET env vars."
+    "No credentials found. Run `npx @kms_dev/x-mcp login` or set X_API_KEY, X_API_SECRET, X_ACCESS_TOKEN, X_ACCESS_TOKEN_SECRET env vars."
   );
 }
 
