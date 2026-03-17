@@ -2,9 +2,7 @@
   "name": "@kms_dev/x-mcp",
   "version": "0.1.1",
   "type": "module",
-  "bin": {
-    "x-mcp": "./dist/index.js"
-  },
+  "bin": "./dist/index.js",
   "main": "./dist/index.js",
   "files": [
     "dist"
