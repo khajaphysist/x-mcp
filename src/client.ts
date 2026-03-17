@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
-import { Client } from "@xdevplatform/xdk";
+import { Client, OAuth1 } from "@xdevplatform/xdk";
 
 export interface StoredCredentials {
   apiKey: string;
@@ -36,21 +36,26 @@ export function createClient(): Client {
   const accessTokenSecret = process.env.X_ACCESS_TOKEN_SECRET;
 
   if (apiKey && apiSecret && accessToken && accessTokenSecret) {
-    return new Client({
-      oauth1: { apiKey, apiSecret, accessToken, accessTokenSecret },
+    const oauth1 = new OAuth1({
+      apiKey,
+      apiSecret,
+      callback: "oob",
+      accessToken,
+      accessTokenSecret,
     });
+    return new Client({ oauth1 });
   }
 
   const creds = loadCredentials();
   if (creds) {
-    return new Client({
-      oauth1: {
-        apiKey: creds.apiKey,
-        apiSecret: creds.apiSecret,
-        accessToken: creds.accessToken,
-        accessTokenSecret: creds.accessTokenSecret,
-      },
+    const oauth1 = new OAuth1({
+      apiKey: creds.apiKey,
+      apiSecret: creds.apiSecret,
+      callback: "oob",
+      accessToken: creds.accessToken,
+      accessTokenSecret: creds.accessTokenSecret,
     });
+    return new Client({ oauth1 });
   }
 
   throw new Error(

@@ -4,6 +4,9 @@ import path from "node:path";
 import os from "node:os";
 
 vi.mock("@xdevplatform/xdk", () => ({
+  OAuth1: function (config: any) {
+    return { _oauth1Config: config };
+  },
   Client: function (config: any) {
     return {
       _config: config,
@@ -85,7 +88,7 @@ describe("client", () => {
 
       const client = createClient();
       expect(client).toBeDefined();
-      expect((client as any)._config.oauth1.apiKey).toBe("env-key");
+      expect((client as any)._config.oauth1._oauth1Config.apiKey).toBe("env-key");
     });
 
     it("throws when no credentials available", () => {
@@ -116,7 +119,7 @@ describe("client", () => {
         saveCredentials(testCreds);
         const client = createClient();
         expect(client).toBeDefined();
-        expect((client as any)._config.oauth1.apiKey).toBe("stored-key");
+        expect((client as any)._config.oauth1._oauth1Config.apiKey).toBe("stored-key");
       } finally {
         if (existingCreds) {
           saveCredentials(existingCreds);
