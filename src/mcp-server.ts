@@ -36,8 +36,11 @@ for (const tool of tools) {
       return {
         content: [{ type: "text" as const, text: JSON.stringify(result, null, 2) }],
       };
-    } catch (err) {
-      const message = err instanceof Error ? err.message : String(err);
+    } catch (err: any) {
+      let message = err instanceof Error ? err.message : String(err);
+      if (err?.data) {
+        message += `\n${JSON.stringify(err.data, null, 2)}`;
+      }
       return {
         content: [{ type: "text" as const, text: `Error: ${message}` }],
         isError: true,
